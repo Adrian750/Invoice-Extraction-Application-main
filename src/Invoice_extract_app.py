@@ -72,31 +72,30 @@ def extracted_data(invoice_data):
 
     full_response=llm.invoke(prompt)
 
-    # try:
-    #     parsed_response = InvoiceLineItem.parse_raw(full_response.content)
-    #     print(parsed_response)
-    # except Exception as e:
-    #     print(f"Error parsing response: {e}")
 
+    # # Use regex to extract the content part
+    # content_match = re.search(r"AIMessage\(content='(.*?)', response_metadata=", full_response, re.DOTALL)
 
-    # Use regex to extract the content part
-    content_match = re.search(r"AIMessage\(content='(.*?)', response_metadata=", full_response, re.DOTALL)
-
-    if content_match:
-        content_json = content_match.group(1)
+    # if content_match:
+    #     content_json = content_match.group(1)
         
-        # Decode any escape characters if necessary
-        content_json = content_json.encode().decode('unicode_escape')
+    #     # Decode any escape characters if necessary
+    #     content_json = content_json.encode().decode('unicode_escape')
 
-        # Parse the JSON content
-        content_dict = json.loads(content_json)
+    #     # Parse the JSON content
+    #     content_dict = json.loads(content_json)
         
-        # Pretty-print the content
-        response = json.dumps(content_dict, indent=4)
-        return response
-    else:
-        return "Content not found."
+    #     # Pretty-print the content
+    #     response = json.dumps(content_dict, indent=4)
+    #     return response
+    # else:
+    #     return "Content not found."
     
+    content_dict = full_response.content
+
+    # Convert to JSON string
+    content_json = json.dumps(content_dict, indent=4)
+    return content_json
 
     
 
