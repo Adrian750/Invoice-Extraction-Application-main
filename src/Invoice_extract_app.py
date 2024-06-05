@@ -96,6 +96,7 @@ def extracted_data(invoice_data):
         return response
     else:
         return "Content not found."
+    
 
     
 
