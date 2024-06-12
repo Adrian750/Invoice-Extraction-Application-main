@@ -66,7 +66,7 @@ def main():
     if post_to_sap:
         sap_api_url = st.text_input("SAP API URL", "https://htpc20882p01.cloudiax.com:50000/b1s/v2/PurchaseInvoices")
         username = st.text_input("Username", "Frutta@222")
-        password = st.text_input("Password", "{"CompanyDB": "A20882_FRUTTA_T01", "UserName": "manager"}", type="password")
+        password = st.text_input("Password", {"CompanyDB": "A20882_FRUTTA_T01", "UserName": "manager"}, type="password")
 
         if sap_api_url and username and password:
             for i, llm_response in enumerate(data):
