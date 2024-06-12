@@ -50,10 +50,10 @@ def main():
 
     st.set_page_config(page_title="Invoice Extraction Bot")
     st.title("Invoice Extraction Bot... ")
-    data = create_docs(file)
-
+    
     # Upload the Invoices (pdf files)
     file = st.file_uploader("Upload invoices here, only PDF and jpeg files allowed", type=["pdf", "jpeg"],accept_multiple_files=True)
+    data = create_docs(file)
 
     submit = st.button("Extract Data")
     post_to_sap = st.button("Post to SAP")
