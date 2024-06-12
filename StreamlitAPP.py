@@ -56,18 +56,17 @@ def main():
     data = create_docs(file)
 
     submit = st.button("Extract Data")
-    post_to_sap = st.button("Post to SAP")
 
     if submit:
         with st.spinner('Wait for it...'):
             st.write(data)
         st.success("Augment this information with human validation")
 
-
+    post_to_sap = st.button("Post to SAP")
     if post_to_sap:
-        sap_api_url = st.text_input("SAP API URL", "https://api.sap.com/example/endpoint")
-        username = st.text_input("Username", "your_username")
-        password = st.text_input("Password", "your_password", type="password")
+        sap_api_url = st.text_input("SAP API URL", "https://htpc20882p01.cloudiax.com:50000/b1s/v2/PurchaseInvoices")
+        username = st.text_input("Username", "Frutta@222")
+        password = st.text_input("Password", "{"CompanyDB": "A20882_FRUTTA_T01", "UserName": "manager"}", type="password")
 
         if sap_api_url and username and password:
             for i, llm_response in enumerate(data):
