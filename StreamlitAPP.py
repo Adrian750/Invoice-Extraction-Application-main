@@ -74,7 +74,6 @@ def main():
                 api_input = map_llm_to_api(llm_response)
                 response = post_to_sap_api(api_input, sap_api_url, username, password)
                 st.write(f"Response Status Code for Invoice {llm_response['invoiceNo']}: {response.status_code}")
-                st.json(response.json())
         else:
             st.error("Please provide SAP API URL, Username, and Password")
 
