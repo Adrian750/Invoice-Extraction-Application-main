@@ -6,15 +6,17 @@ import uuid
 
 # Function to map LLM response to the new API format
 def map_llm_to_api(llm_response):
+    # For generation of unique identifier anytime function is called
     num_at_card = str(uuid.uuid4())
     
+    # MappingLLM output to SAP B1Input format
     api_input = {
         "DocType": "Invoice_Document",
         "DocDate": llm_response["invoiceDate"],
         "DocDueDate": llm_response["invoiceDate"],
         "CardCode": llm_response["supplierCode"],
         "NumAtCard": num_at_card,
-        "Comments": "Comment from Test API",
+        "Comments": "Posting to Test API",
         "DocumentLines": []
     }
     
@@ -62,16 +64,13 @@ def main():
         st.success("Augment this information with human validation")
 
 
-    for i, llm_response in enumerate(data):
-        st.json(llm_response)
-
     if post_to_sap:
         sap_api_url = st.text_input("SAP API URL", "https://api.sap.com/example/endpoint")
         username = st.text_input("Username", "your_username")
         password = st.text_input("Password", "your_password", type="password")
 
         if sap_api_url and username and password:
-            for llm_response in data:
+            for i, llm_response in enumerate(data):
                 api_input = map_llm_to_api(llm_response)
                 response = post_to_sap_api(api_input, sap_api_url, username, password)
                 st.write(f"Response Status Code for Invoice {llm_response['invoiceNo']}: {response.status_code}")
