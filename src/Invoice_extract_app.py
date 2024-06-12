@@ -93,9 +93,9 @@ def extracted_data(invoice_data):
     
     content_dict = full_response.content
 
-    # Convert to JSON string
-    content_json = json.dumps(content_dict, indent=4)
-    return content_json
+    # # Convert to JSON object
+    # content_json = json.loads(content_dict, indent=4)
+    return content_dict
 
     
 
