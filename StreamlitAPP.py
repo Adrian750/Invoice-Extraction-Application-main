@@ -14,7 +14,7 @@ def map_llm_to_api(llm_response):
         "DocType": "Invoice_Document",
         "DocDate": llm_response["invoiceDate"],
         "DocDueDate": llm_response["invoiceDate"],
-        "CardCode": llm_response["supplierCode"],
+        "CardCode": "S100263",
         "NumAtCard": num_at_card,
         "Comments": "Posting to Test API",
         "DocumentLines": []
@@ -35,7 +35,10 @@ def map_llm_to_api(llm_response):
 
 # Function to post the mapped data to SAP API
 def post_to_sap_api(api_input, sap_api_url, username, password):
-    headers = {'Content-Type': 'application/json'}
+    headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'eyJDb21wYW55REIiOiAiQTIwODgyX0ZSVVRUQV9UMDEiLCAiVXNlck5hbWUiOiAibWFuYWdlciJ9OkZydXR0YUAyMjI=',
+  'Cookie': 'B1SESSION=fd5025b6-2e1b-11ef-8000-fa163ed66415; ROUTEID=.node4'}
     
     response = requests.post(
         sap_api_url,
