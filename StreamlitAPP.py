@@ -33,8 +33,8 @@ def map_llm_to_api(llm_response):
     
     return api_input
 
-# Function to post the mapped data to SAP API
-def post_to_sap_api(api_input, sap_api_url, username, password):
+# Function to post the mapped data to SAP API (, username, password)
+def post_to_sap_api(api_input, sap_api_url):
     headers = {
   'Content-Type': 'application/json',
   'Authorization': 'eyJDb21wYW55REIiOiAiQTIwODgyX0ZSVVRUQV9UMDEiLCAiVXNlck5hbWUiOiAibWFuYWdlciJ9OkZydXR0YUAyMjI=',
@@ -42,7 +42,7 @@ def post_to_sap_api(api_input, sap_api_url, username, password):
     
     response = requests.post(
         sap_api_url,
-        auth=(username, password),
+        # auth=(username, password),
         headers=headers,
         data=json.dumps(api_input)
     )
@@ -68,10 +68,11 @@ def main():
     post_to_sap = st.button("Post to SAP")
     if post_to_sap:
         sap_api_url = st.text_input("SAP API URL", "https://htpc20882p01.cloudiax.com:50000/b1s/v2/PurchaseInvoices")
-        username = st.text_input("Username", {"CompanyDB": "A20882_FRUTTA_T01", "UserName": "manager"})
-        password = st.text_input("Password", "Frutta@222", type="password")
+        # username = st.text_input("Username", {"CompanyDB": "A20882_FRUTTA_T01", "UserName": "manager"})
+        # password = st.text_input("Password", "Frutta@222", type="password")
 
-        if sap_api_url and username and password:
+# and username and password:
+        if sap_api_url:   
             for i, llm_response in enumerate(data):
                 api_input = map_llm_to_api(llm_response)
                 response = post_to_sap_api(api_input, sap_api_url, username, password)
