@@ -71,11 +71,11 @@ def main():
         # username = st.text_input("Username", {"CompanyDB": "A20882_FRUTTA_T01", "UserName": "manager"})
         # password = st.text_input("Password", "Frutta@222", type="password")
 
-# and username and password:
-        if sap_api_url:   
+
+        if sap_api_url:   # and username and password:
             for i, llm_response in enumerate(data):
                 api_input = map_llm_to_api(llm_response)
-                response = post_to_sap_api(api_input, sap_api_url, username, password)
+                response = post_to_sap_api(api_input, sap_api_url) #, username, password
                 st.write(f"Response Status Code for Invoice {llm_response['invoiceNo']}: {response.status_code}")
         else:
             st.error("Please provide SAP API URL, Username, and Password")
