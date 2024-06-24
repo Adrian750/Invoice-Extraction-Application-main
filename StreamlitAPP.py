@@ -37,8 +37,7 @@ def map_llm_to_api(llm_response):
 def post_to_sap_api(api_input, sap_api_url, username, password):
     headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'eyJDb21wYW55REIiOiAiQTIwODgyX0ZSVVRUQV9UMDEiLCAiVXNlck5hbWUiOiAibWFuYWdlciJ9OkZydXR0YUAyMjI='}
-#   'Cookie': 'B1SESSION=fd5025b6-2e1b-11ef-8000-fa163ed66415; ROUTEID=.node4'}
+  'Authorization': 'J0Jhc2ljIGV5SkRiMjF3WVc1NVJFSWlPaUFpUVRJd09EZ3lYMFpTVlZSVVFWOVVNREVpTENBaVZYTmxjazVoYldVaU9pQWliV0Z1WVdkbGNpSjlPa1p5ZFhSMFlVQXlNakk9Jw=='}
     
     response = requests.post(
         sap_api_url,
@@ -68,7 +67,7 @@ def main():
     post_to_sap = st.button("Post to SAP")
     if post_to_sap:
         sap_api_url = st.text_input("SAP API URL", "https://htpc20882p01.cloudiax.com:50000/b1s/v2/PurchaseInvoices")
-        username = st.text_input("Username", "manager")
+        username = st.text_input("Username", {"CompanyDB": "A20882_FRUTTA_T01", "UserName": "manager"})
         password = st.text_input("Password", "Frutta@222", type="password")
 
 
